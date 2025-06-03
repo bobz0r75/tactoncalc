@@ -1,0 +1,18 @@
+---
+name: Automated Tests
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test-new-version:
+    name: "Test New Version"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Maven
+        uses: s4u/setup-maven-action@v1.18.0
+        with:
+          java-version: '21'
+          java-distribution: 'temurin'
+      - name: "Run Maven build"
+        run: mvn --batch-mode clean verify
